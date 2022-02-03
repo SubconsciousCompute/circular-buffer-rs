@@ -189,7 +189,7 @@ impl<T> CircularBuffer<T> {
     }
 
     /// Get the first element.
-    fn front(&self) -> T {
+    pub fn front(&self) -> T {
         unsafe {
             let ptr = self.buffer.add(self.r);
             ptr.read()
@@ -197,7 +197,7 @@ impl<T> CircularBuffer<T> {
     }
 
     /// Get the last element.
-    fn back(&self) -> T {
+    pub fn back(&self) -> T {
         unsafe {
             if self.w == 0 {
                 let ptr = self.buffer.add(self.size - 1);
