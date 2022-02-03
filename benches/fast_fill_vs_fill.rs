@@ -27,7 +27,7 @@ fn bench_filles(c: &mut Criterion) {
                     buffer.push(i);
                 }
                 let mut drainer = Vec::with_capacity(*drains);
-                bencher.iter(|| buffer.fast_fill(&mut drainer));
+                bencher.iter(|| buffer._fast_fill(&mut drainer));
             },
         );
 

@@ -13,7 +13,7 @@ fn main() {
     let mut t = std::time::Duration::new(0, 0);
     for _ in 0..10_000 {
         let now = std::time::Instant::now();
-        t1.fast_fill(&mut d);
+        t1._fast_fill(&mut d);
         let d = now.elapsed();
         t += d;
         for i in 10..600 {
