@@ -188,6 +188,27 @@ impl<T> CircularBuffer<T> {
         }
     }
 
+    /// Get the first element.
+    fn front(&self) -> T {
+        unsafe {
+            let ptr = self.buffer.add(self.r);
+            ptr.read()
+        }
+    }
+
+    /// Get the last element.
+    fn back(&self) -> T {
+        unsafe {
+            if self.w == 0 {
+                let ptr = self.buffer.add(self.size - 1);
+                ptr.read()
+            } else {
+                let ptr = self.buffer.add(self.w - 1);
+                ptr.read()
+            }
+        }
+    }
+
     fn drop(&mut self) {
         unsafe {
             let ptr = self.buffer.offset(self.w.try_into().unwrap());

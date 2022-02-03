@@ -335,3 +335,20 @@ fn test_clone() {
     let c1: Vec<_> = c.collect();
     assert_eq!(c1[0].a, "1");
 }
+
+#[test]
+fn test_front_back() {
+    use std::cmp::max;
+
+    let size = 10usize;
+    let mut b = CircularBuffer::new(size);
+    for i in 0..30 {
+        b.push(i);
+        println!("{} {}", i, b.front());
+        assert_eq!(b.front(), if i < size { 0 } else { i - size + 1 });
+        assert_eq!(b.back(), i);
+    }
+
+    b.push(11);
+    assert_eq!(b.back(), 11);
+}
